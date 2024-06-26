@@ -1,17 +1,47 @@
-version: "3"
-services:
-  db:
-    image: postgres:13
-    container_name: online_store_postgres
-    environment:
-      POSTGRES_DB: online_store
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: saipul1452
-    ports:
-      - "5432:5432"
+version: "3.8"
 
+services:
   redis:
     image: redis:latest
-    container_name: online_store_redis
     ports:
-      - "6379:6379"
+      - "6380:6379"
+    networks:
+      - backend-challenge
+
+  postgres:
+    image: postgres:13.15
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: saipul1452
+      POSTGRES_DB: online_store
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend-challenge
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: saipul1452
+      POSTGRES_DB: online_store
+    networks:
+      - backend-challenge
+
+networks:
+  backend-challenge:
+    driver: bridge
+
+volumes:
+  postgres_data:
