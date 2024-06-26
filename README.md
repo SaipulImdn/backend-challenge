@@ -1,40 +1,49 @@
+---
+
 # Online Store
 
-## Deskripsi
+## Description
 
-Proyek ini adalah aplikasi back-end untuk toko online yang dibangun menggunakan Go-lang dan Fiber. Aplikasi ini menyediakan API untuk manajemen produk, keranjang belanja, dan transaksi.
+This project is a back-end application for an online store built using Go-lang and Fiber. The application provides APIs for product management, shopping cart, and transactions.
 
-## Fitur
+## Features
 
-- Melihat daftar produk berdasarkan kategori.
-- Menambahkan produk ke keranjang belanja.
-- Melihat daftar produk dalam keranjang belanja.
-- Menghapus produk dari keranjang belanja.
-- Melakukan checkout dan transaksi pembayaran.
-- Login dan registrasi pelanggan.
+- View product list by category.
+- Add products to the shopping cart.
+- View the list of products in the shopping cart.
+- Remove products from the shopping cart.
+- Checkout and process payments.
+- Customer registration and login.
 
-## Struktur Proyek
+## Project Structure
 
-- `cmd`: Direktori untuk main.go.
-- `internal`: Direktori untuk kode aplikasi.
-- `pkg`: Direktori untuk utilitas umum.
-- `configs`: Direktori untuk konfigurasi.
-- `migrations`: Direktori untuk migrasi database.
-- `Dockerfile`: File untuk membangun Docker image.
-- `docker-compose.yml`: File untuk mengatur Docker compose.
+- `cmd`: Directory for `main.go`.
+- `internal`: Directory for application code, containing:
+  - `controllers`
+  - `middleware`
+  - `models`
+  - `routes`
+- `configs`: Directory for `config.go`.
+- `.env.example`: Example environment configuration file.
+- `docker-compose.yml`: File for setting up Docker compose.
+- `Dockerfile`: File for building the Docker image.
+- `go.mod` and `go.sum`: Files for Go dependency management.
 
-## Cara Menjalankan
+## How to Run
 
-1. Clone repositori ini.
-2. Jalankan `docker-compose up` untuk memulai aplikasi.
-3. Aplikasi akan tersedia di `http://localhost:8080`.
+1. Clone this repository.
+2. Create a `.env` file based on `.env.example`.
+3. Run `docker-compose up` to start the application.
+4. The application will be available at `http://localhost:5000`.
 
-## Endpoint API
+## API Endpoints
 
-- `GET /products/:category`: Mendapatkan daftar produk berdasarkan kategori.
-- `POST /cart`: Menambahkan produk ke keranjang belanja.
-- `GET /cart`: Melihat daftar produk dalam keranjang belanja.
-- `DELETE /cart/:id`: Menghapus produk dari keranjang belanja.
-- `POST /checkout`: Melakukan checkout dan transaksi pembayaran.
-- `POST /register`: Registrasi pelanggan.
-- `POST /login`: Login pelanggan.
+- `GET /products/:category`: Get a list of products by category.
+- `POST /cart`: Add products to the shopping cart.
+- `GET /cart/:user_id`: View the list of products in the shopping cart.
+- `DELETE /cart/:cart_id`: Remove products from the shopping cart.
+- `POST /checkout`: Checkout and process payments.
+- `POST /register`: Customer registration.
+- `POST /login`: Customer login.
+
+---
